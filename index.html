@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nestwork: graduate jobs, matched to your skills</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#f6f8fb;--surface:#fff;--ink:#0f172a;--muted:#5b6b82;--line:#e2e8f0;--accent:#0b6e8a;--accent-ink:#fff;--soft:#e6f2f6;--hero:#0a1f33;--hero-ink:#fff;--hero-mut:#b8c7da;--shadow:0 1px 2px rgba(15,23,42,.06),0 8px 24px -12px rgba(15,23,42,.14);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--surface:#111a2b;--ink:#e8eef7;--muted:#93a4bb;--line:#223049;--accent:#5cc8e6;--accent-ink:#06222c;--soft:#15303d;--hero:#07101c;--shadow:0 1px 2px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1220;--surface:#111a2b;--ink:#e8eef7;--muted:#93a4bb;--line:#223049;--accent:#5cc8e6;--accent-ink:#06222c;--soft:#15303d;--hero:#07101c;--shadow:0 1px 2px rgba(0,0,0,.4);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15.5px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:10}
+h1,h2,h3{margin:0;line-height:1.15;letter-spacing:-.02em}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;letter-spacing:-.02em}
+nav{display:flex;gap:4px}
+nav button{background:none;border:0;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:500;color:var(--muted)}
+nav button:hover{color:var(--ink)}
+nav button[aria-current="true"]{background:var(--soft);color:var(--accent);font-weight:600}
+.hero{background:var(--hero);color:var(--hero-ink);padding:52px 0 40px}
+.hero.slim{padding:36px 0 30px}
+.hero h1{font-size:clamp(30px,5vw,48px);font-weight:700;max-width:17em}
+.hero .lead{color:var(--hero-mut);max-width:36em;margin:14px 0 26px;font-size:17px}
+.hero.slim .lead{margin-bottom:0}
+.skillbox{background:var(--surface);color:var(--ink);border-radius:14px;padding:18px;max-width:720px;box-shadow:var(--shadow)}
+.skillbox label{display:block;font-weight:600;margin-bottom:8px}
+.skillbox form{display:flex;gap:8px}
+.skillbox input{flex:1}
+input[type=text],select{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-width:0}
+input[type=text]:focus,select:focus{border-color:var(--accent)}
+.btn{background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);border-radius:8px;padding:10px 16px;font-weight:600;cursor:pointer;white-space:nowrap}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--ink);border-color:var(--line);font-weight:500}
+.btn.ghost:hover{border-color:var(--accent);filter:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chips:empty{display:none}
+.chip{background:var(--soft);color:var(--accent);border:0;border-radius:99px;padding:4px 12px;font-size:14px;font-weight:500;cursor:pointer}
+.chip.mine::after{content:" \00d7";font-weight:700}
+.chip.sugg{background:none;border:1px dashed var(--line);color:var(--muted)}
+.chip.sugg:hover{border-color:var(--accent);color:var(--accent)}
+.hint{color:var(--muted);font-size:14px;margin:10px 0 0}
+.layout{display:grid;grid-template-columns:240px 1fr;gap:28px;padding-top:28px;padding-bottom:12px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;position:sticky;top:calc(80px + env(safe-area-inset-top,0px))}
+.panel label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:14px 0 6px}
+.panel label:first-child{margin-top:0}
+.count{color:var(--muted);margin:0 0 12px;font-weight:500}
+ul.jobs{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.row{display:grid;grid-template-columns:auto 1fr auto;gap:18px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:12px;transition:border-color .15s,box-shadow .15s}
+.row:hover{border-color:var(--accent);box-shadow:var(--shadow)}
+.mono{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-weight:700;font-size:16px;color:hsl(var(--h) 55% 28%);background:hsl(var(--h) 70% 90%)}
+.row h3{font-size:18px;font-weight:650}
+.co{margin:3px 0 10px;font-weight:500}
+.co span{color:var(--muted);font-weight:400;margin-left:10px;padding-left:10px;border-left:1px solid var(--line)}
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;font-size:13px}
+.facts span{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--muted)}
+.facts .soon{color:#b45309;border-color:#f3c98b}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:13px;border-radius:6px;padding:2px 9px;background:var(--bg);color:var(--muted)}
+.tag.have{background:var(--soft);color:var(--accent);font-weight:600}
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:150px}
+.ring{--p:0;--c:#64748b;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--c) calc(var(--p)*1%),var(--line) 0);position:relative;font-weight:700;font-size:15px}
+.ring::before{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--surface)}
+.ring span{position:relative}
+.ring.off{background:var(--line);color:var(--muted)}
+.mlab{margin:0 0 8px;font-size:12.5px;color:var(--muted)}
+.act{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.act .btn{padding:7px 12px;font-size:14px}
+.stage{font-weight:600;color:var(--accent);background:var(--soft);border-radius:6px;padding:6px 10px;font-size:14px}
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;padding:28px 0}
+.col{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;align-self:start}
+.col h2{font-size:15px;font-weight:650;display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.col small{background:var(--soft);color:var(--accent);border-radius:99px;padding:1px 9px;font-size:13px}
+.item{border-bottom:1px solid var(--line);padding:12px 0}
+.item:last-child{border-bottom:0;padding-bottom:0}
+.item b{display:block;font-weight:600}
+.item span{color:var(--muted);font-size:14px}
+.item .act{justify-content:flex-start;margin-top:8px}
+.item select{width:auto;padding:5px 8px;font-size:14px}
+.empty{color:var(--muted);padding:18px 0;margin:0}
+li.empty{list-style:none;background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:32px;text-align:center}
+footer{color:var(--muted);font-size:14px;padding:28px 0 44px;border-top:1px solid var(--line);margin-top:24px}
+[hidden]{display:none!important}
+@media (max-width:860px){.layout{grid-template-columns:1fr}.panel{position:static}}
+@media (max-width:620px){.row{grid-template-columns:auto 1fr;padding:16px}.side{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:12px}.ring{width:48px;height:48px;font-size:13px}.ring::before{inset:5px}.mlab{display:none}.skillbox form{flex-wrap:wrap}.wrap{padding:0 16px}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <div class="brand"><svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="var(--accent)"/><ellipse cx="14" cy="11" rx="3.6" ry="4.6" fill="#ffd166"/><path d="M6.5 15.5c0 4.4 3.4 7.5 7.5 7.5s7.5-3.1 7.5-7.5z" fill="#fff"/></svg>Nestwork</div>
+  <nav aria-label="Main">
+    <button type="button" data-view="jobs" aria-current="true">Jobs</button>
+    <button type="button" data-view="track" aria-current="false">Applications <span id="n"></span></button>
+  </nav>
+</div></header>
+<main>
+<section id="jobs">
+  <div class="hero"><div class="wrap">
+    <h1>Tell us what you can do. We’ll show the jobs that fit.</h1>
+    <p class="lead">Add your skills, see how well each graduate role matches, then track every application from saved to offer.</p>
+    <div class="skillbox">
+      <label for="skill">Your skills</label>
+      <form id="skillform"><input type="text" id="skill" placeholder="For example: Python, Excel, communication" autocomplete="off"><button class="btn" type="submit">Add skills</button><button class="btn ghost" type="button" id="demo">Try an example</button></form>
+      <div class="chips" id="mine" aria-live="polite"></div>
+      <div class="chips" id="sugg"></div>
+      <p class="hint" id="hint"></p>
+    </div>
+  </div></div>
+  <div class="wrap layout">
+    <aside class="panel" aria-label="Filters">
+      <label for="q">Search</label><input type="text" id="q" placeholder="Job, employer or skill">
+      <label for="field">Field</label><select id="field"></select>
+      <label for="type">Job type</label><select id="type"></select>
+      <label for="sort">Sort by</label><select id="sort"><option value="match">Best match</option><option value="close">Closing soonest</option></select>
+    </aside>
+    <div><p class="count" id="count" aria-live="polite"></p><ul class="jobs" id="list"></ul></div>
+  </div>
+</section>
+<section id="track" hidden>
+  <div class="hero slim"><div class="wrap"><h1>Your applications</h1><p class="lead">Move each job along as things happen. Everything is saved in this browser.</p></div></div>
+  <div class="wrap"><div class="board" id="board"></div><p class="empty" id="tempty" hidden>Nothing tracked yet. Go to Jobs and choose Save or “I’ve applied”.</p></div>
+</section>
+</main>
+<footer><div class="wrap">The listings here are samples from made-up employers, so you can try the matching and tracker. Your skills and applications never leave this browser.</div></footer>
+<script>
+const JOBS=[
+{id:1,t:"Junior Software Developer",c:"Brightpath Digital",l:"Pretoria, Gauteng",f:"IT & software",y:"Graduate programme",d:"2026-11-20",s:["JavaScript","React","SQL","Git"]},
+{id:2,t:"Graduate QA Tester",c:"Kopano Systems",l:"Johannesburg, Gauteng",f:"IT & software",y:"Full-time",d:"2026-11-12",s:["Software testing","SQL","Python","Communication"]},
+{id:3,t:"Data Analyst Intern",c:"Baobab Analytics",l:"Remote",f:"Data",y:"Internship",d:"2026-12-01",s:["Excel","SQL","Python","Statistics"]},
+{id:4,t:"Graduate Trainee Accountant",c:"Lerato & Partners",l:"Cape Town, Western Cape",f:"Finance",y:"Graduate programme",d:"2026-11-30",s:["Excel","Accounting","Communication","Attention to detail"]},
+{id:5,t:"Process Modelling Analyst",c:"Ironbridge Engineering",l:"Johannesburg, Gauteng",f:"Engineering",y:"Graduate programme",d:"2026-12-10",s:["Excel","Python","Statistics","Problem solving"]},
+{id:6,t:"Digital Marketing Intern",c:"Sunbird Media",l:"Durban, KwaZulu-Natal",f:"Marketing",y:"Internship",d:"2026-11-25",s:["Social media","Copywriting","Canva","Analytics"]},
+{id:7,t:"IT Support Technician",c:"Nova Connect",l:"Midrand, Gauteng",f:"IT & software",y:"Full-time",d:"2026-11-08",s:["Networking","Windows","Customer service","Troubleshooting"]},
+{id:8,t:"Junior Cloud Support Associate",c:"Skyline Cloudworks",l:"Remote",f:"IT & software",y:"Learnership",d:"2026-12-15",s:["AWS","Linux","Python","Networking"]},
+{id:9,t:"Learning and Development Intern",c:"Umoja Learning",l:"Centurion, Gauteng",f:"Education",y:"Internship",d:"2026-11-18",s:["Communication","Instructional design","Canva","Presentation"]},
+{id:10,t:"Graduate Mobile Developer",c:"Pixel Kraal",l:"Stellenbosch, Western Cape",f:"IT & software",y:"Graduate programme",d:"2026-12-05",s:["Kotlin","Android","Git","Java"]}];
+const STAGES=["Saved","Applied","Interview","Offer"];
+let S={skills:[],track:{}};
+try{Object.assign(S,JSON.parse(localStorage.getItem("nestwork")||"{}"))}catch(e){}
+const store=()=>{try{localStorage.setItem("nestwork",JSON.stringify(S))}catch(e){}};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const days=j=>Math.ceil((new Date(j.d+"T23:59:59")-Date.now())/864e5);
+const have=()=>new Set(S.skills.map(x=>x.toLowerCase()));
+const hits=j=>{const h=have();return j.s.filter(x=>h.has(x.toLowerCase()))};
+const pct=j=>Math.round(100*hits(j).length/j.s.length);
+const fields=[...new Set(JOBS.map(j=>j.f))].sort(), types=[...new Set(JOBS.map(j=>j.y))].sort();
+$("#field").innerHTML='<option value="">All fields</option>'+fields.map(x=>`<option>${esc(x)}</option>`).join("");
+$("#type").innerHTML='<option value="">All job types</option>'+types.map(x=>`<option>${esc(x)}</option>`).join("");
+
+function skills(){
+  $("#mine").innerHTML=S.skills.map((s,i)=>`<button type="button" class="chip mine" data-a="rm" data-i="${i}" aria-label="Remove ${esc(s)}">${esc(s)}</button>`).join("");
+  const freq={};JOBS.forEach(j=>j.s.forEach(s=>freq[s]=(freq[s]||0)+1));
+  const h=have();
+  $("#sugg").innerHTML=Object.keys(freq).sort((a,b)=>freq[b]-freq[a]).filter(s=>!h.has(s.toLowerCase())).slice(0,8)
+    .map(s=>`<button type="button" class="chip sugg" data-a="add" data-s="${esc(s)}">+ ${esc(s)}</button>`).join("");
+  $("#hint").textContent=S.skills.length?"Match is the share of a job’s skills you already have.":"No skills added yet. Add a few to see how well each job fits.";
+}
+function jobs(){
+  const q=$("#q").value.trim().toLowerCase(),f=$("#field").value,y=$("#type").value,so=$("#sort").value;
+  let L=JOBS.filter(j=>(!f||j.f===f)&&(!y||j.y===y)&&(!q||(j.t+" "+j.c+" "+j.s.join(" ")).toLowerCase().includes(q)));
+  L.sort(so==="close"?(a,b)=>days(a)-days(b):(a,b)=>pct(b)-pct(a)||days(a)-days(b));
+  $("#count").textContent=L.length+(L.length===1?" job":" jobs")+" found";
+  const mono=c=>c.split(/[^A-Za-z]+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
+  const hue=c=>[...c].reduce((a,ch)=>a+ch.charCodeAt(0),0)*7%360;
+  $("#list").innerHTML=L.length?L.map(j=>{
+    const p=pct(j),h=hits(j).map(x=>x.toLowerCase()),st=S.track[j.id],dl=days(j),has=S.skills.length>0;
+    const col=p>=70?"#16a34a":p>=40?"#d97706":"#64748b";
+    const ring=has?`<div class="ring" style="--p:${p};--c:${col}" role="img" aria-label="${p} percent match"><span>${p}%</span></div><p class="mlab">Skills match</p>`:`<div class="ring off" aria-hidden="true"><span>–</span></div><p class="mlab">Add skills to see match</p>`;
+    const act=st===undefined?`<button class="btn ghost" data-a="track" data-id="${j.id}" data-st="0">Save</button><button class="btn" data-a="track" data-id="${j.id}" data-st="1">I’ve applied</button>`:`<span class="stage">${STAGES[st]}</span><button class="btn ghost" data-a="view">View tracker</button>`;
+    return `<li class="row"><div class="mono" style="--h:${hue(j.c)}" aria-hidden="true">${esc(mono(j.c))}</div><div><h3>${esc(j.t)}</h3><p class="co">${esc(j.c)}<span>${esc(j.l)}</span></p><p class="facts"><span>${esc(j.y)}</span><span>${esc(j.f)}</span><span class="${dl<=21?"soon":""}">${dl>=0?"Closes in "+dl+(dl===1?" day":" days"):"Closed"}</span></p><div class="tags">${j.s.map(s=>`<span class="tag${h.includes(s.toLowerCase())?" have":""}">${esc(s)}</span>`).join("")}</div></div><div class="side">${ring}<div class="act">${act}</div></div></li>`}).join(""):`<li class="empty">No jobs match those filters. Clear the search or choose “All fields”.</li>`;
+}
+function board(){
+  const ids=Object.keys(S.track);
+  $("#n").textContent=ids.length?"("+ids.length+")":"";
+  $("#tempty").hidden=ids.length>0;
+  $("#board").hidden=!ids.length;
+  $("#board").innerHTML=STAGES.map((n,k)=>{
+    const items=ids.filter(i=>S.track[i]===k).map(i=>JOBS.find(j=>j.id==i)).filter(Boolean);
+    return `<div class="col"><h2>${n} <small>${items.length}</small></h2>${items.map(j=>`<div class="item"><b>${esc(j.t)}</b><span>${esc(j.c)}</span><div class="act"><select data-a="mv" data-id="${j.id}" aria-label="Stage for ${esc(j.t)}">${STAGES.map((s,m)=>`<option value="${m}"${m===k?" selected":""}>${s}</option>`).join("")}</select><button class="btn ghost" data-a="del" data-id="${j.id}">Remove</button></div></div>`).join("")||'<p class="empty">Empty</p>'}</div>`}).join("");
+}
+function all(){skills();jobs();board();store()}
+function view(v){["jobs","track"].forEach(x=>{$("#"+x).hidden=x!==v});document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-current",b.dataset.view===v));window.scrollTo(0,0)}
+function addSkills(txt){txt.split(",").map(s=>s.trim()).filter(Boolean).forEach(s=>{if(!have().has(s.toLowerCase()))S.skills.push(s)});all()}
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-a],[data-view]");if(!b)return;
+  if(b.dataset.view)return view(b.dataset.view);
+  const a=b.dataset.a;
+  if(a==="rm")S.skills.splice(+b.dataset.i,1);
+  else if(a==="add")S.skills.push(b.dataset.s);
+  else if(a==="track")S.track[b.dataset.id]=+b.dataset.st;
+  else if(a==="del")delete S.track[b.dataset.id];
+  else if(a==="view")return view("track");
+  else return;
+  all();
+});
+document.addEventListener("change",e=>{if(e.target.dataset.a==="mv"){S.track[e.target.dataset.id]=+e.target.value;all()}});
+$("#skillform").addEventListener("submit",e=>{e.preventDefault();addSkills($("#skill").value);$("#skill").value="";$("#skill").focus()});
+$("#demo").addEventListener("click",()=>addSkills("Python, JavaScript, React, SQL, Git"));
+["#q","#field","#type","#sort"].forEach(s=>$(s).addEventListener("input",jobs));
+all();
+</script>
+</body>
+</html>
